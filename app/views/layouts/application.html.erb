@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-inverse" role="navigation">
+    <a href="#" class="navbar-brand">Mynote</a>
+     <ul class="nav nav-tabs" role="tablist">
+     <li><%= link_to 'All Notes', notes_path %></li>
+      
+     </ul>
+  
+</nav>
+	  
 
-<%= yield %>
+<div class="container">
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>

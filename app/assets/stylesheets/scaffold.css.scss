@@ -1,0 +1,14 @@
+.note {
+	border-bottom: solid 1px #CCC;
+	padding: 5px;
+
+}
+
+.note.admin {
+display: none;
+	
+}
+
+.note.hover .admin {
+	display: inline;
+}
