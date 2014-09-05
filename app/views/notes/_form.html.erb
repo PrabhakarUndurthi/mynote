@@ -13,7 +13,7 @@
 
  
  <div class="field">
-    <%= f.input :user_id , collection: User.signed_in.user , label_method: :first_name %>
+    <%= f.input :user_id , collection: User.all , label_method: :first_name %>
   </div>
   <div class="field">
     <%= f.input :subject %>
