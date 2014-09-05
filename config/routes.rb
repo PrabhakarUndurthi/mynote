@@ -1,5 +1,19 @@
 Mynote::Application.routes.draw do
+  devise_for :users
+
+
+  devise_scope :user do 
+    get 'register', to:  'devise/registration#new', as: :register
+    get 'login', to: 'devise/session#new', as: :login
+    get 'logout', to:  'devise/session#destroy', as: :logout
+  end
+
+
   resources :notes
+  root to: 'notes#index'
+
+
+  #devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

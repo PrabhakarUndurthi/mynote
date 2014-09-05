@@ -1,10 +1,11 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    @notes = Note
   end
 
   # GET /notes/1
@@ -24,7 +25,8 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
+    #@note = Note.new(note_params)
+     @note = current_user.notes.new(note_params)
 
     respond_to do |format|
       if @note.save
@@ -41,7 +43,8 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1.json
   def update
     respond_to do |format|
-      if @note.update(note_params)
+      #if @note.update(note_params)
+        if @note = current_user.notes.find(params[:id])
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -69,6 +72,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:name, :subject, :content)
+      params.require(:note).permit(:user_id, :subject, :content)
     end
 end
